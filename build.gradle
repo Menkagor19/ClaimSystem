@@ -29,6 +29,11 @@ dependencies {
     testImplementation 'org.spockframework:spock-core:2.4-M1-groovy-4.0'
     testImplementation 'org.spockframework:spock-spring:2.4-M1-groovy-4.0'
     testImplementation 'org.apache.groovy:groovy-all:4.0.12'
+
+    implementation 'com.sun.xml.bind:jaxb-xjc:4.0.2'
+    implementation 'com.sun.xml.bind:jaxb-core:4.0.2'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.2'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
 }
 
 tasks.named('test') {
@@ -36,7 +41,7 @@ tasks.named('test') {
 }
 
 test {
-    finalizedBy jacocoTestReport // report is always generated after tests run
+    finalizedBy jacocoTestReport  // report is always generated after tests run
 }
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
@@ -69,3 +74,26 @@ jacocoTestCoverageVerification {
         }
     }
 }
+
+tasks.register('generateJaxb') {
+    group = "build"
+    def jaxbTargetDir = file("src/main/java")
+    doLast {
+        ant {
+            taskdef(name: 'xjc', classname: 'com.sun.tools.xjc.XJCTask',
+                    classpath: configurations.runtimeClasspath.asPath)
+
+            mkdir(dir: jaxbTargetDir)
+
+            xjc(destdir: jaxbTargetDir,
+                    package: 'com.example.claimsystem.policies',
+                    schema: 'http://localhost:8080/ws/policy-details.wsdl',
+                    extension: true
+            )
+            {
+                arg(value:"-wsdl")
+            }
+        }
+    }
+}
+//compileJava.dependsOn(generateJaxb)
