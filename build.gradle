@@ -86,7 +86,7 @@ tasks.register('generateJaxb') {
             mkdir(dir: jaxbTargetDir)
 
             xjc(destdir: jaxbTargetDir,
-                    package: 'com.example.claimsystem.policies',
+                    package: 'com.example.claimsystem.model',
                     schema: 'http://localhost:8080/ws/policy-details.wsdl',
                     extension: true
             )

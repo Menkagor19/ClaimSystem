@@ -1,7 +1,7 @@
 package com.example.claimsystem.controller
 
-import com.example.claimsystem.policies.GetPolicyDetailsResponse
-import com.example.claimsystem.policies.PolicyDetails
+import com.example.claimsystem.model.GetPolicyDetailsResponse
+import com.example.claimsystem.model.PolicyDetails
 import jakarta.xml.soap.MessageFactory
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired

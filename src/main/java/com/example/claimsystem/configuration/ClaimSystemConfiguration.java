@@ -23,7 +23,7 @@ public class ClaimSystemConfiguration {
     @Bean
     public Jaxb2Marshaller jaxb2Marshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setContextPath("com.example.claimsystem.policies"); // Set the package where your generated JAXB classes are located
+        marshaller.setContextPath("com.example.claimsystem.model"); // Set the package where your generated JAXB classes are located
         return marshaller;
     }
 

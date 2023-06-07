@@ -2,8 +2,8 @@ package com.example.claimsystem.service
 
 import com.example.claimsystem.dto.PolicyDetailsDTO
 import com.example.claimsystem.exception.ResponseIsNullorNotCastableException
-import com.example.claimsystem.policies.GetPolicyDetailsResponse
-import com.example.claimsystem.policies.PolicyDetails
+import com.example.claimsystem.model.GetPolicyDetailsResponse
+import com.example.claimsystem.model.PolicyDetails
 import org.springframework.ws.client.core.WebServiceTemplate
 import spock.lang.Specification
 
